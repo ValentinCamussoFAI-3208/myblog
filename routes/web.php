@@ -1,24 +1,26 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\CategoryController;
 
-Route::get('/', [HomeController::class, 'getHome']);
-
-Route::get('login', function () {
-    return view('auth.login');
+Route::get('/', function () {
+    return view('welcome');
 });
 
-Route::get('logout', function () {
-    return 'Logout';
+Route::middleware(['web'])->group(function () {
+    Route::get('/register', function () {   
+        return view('auth.register');
+    });
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('category', [CategoryController::class, 'getIndex']);
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-Route::get('category/show/{id}', [CategoryController::class, 'getShow']);
-
-Route::get('category/create', [CategoryController::class, 'getCreate']);
-
-Route::get('category/edit/{id}', [CategoryController::class, 'getEdit']);
+require __DIR__.'/auth.php';
