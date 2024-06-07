@@ -5,13 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
 
-Route::get('/', [HomeController::class, 'getHome']);
+Route::get('/', [HomeController::class, 'getHome'])->name('welcome');
 
 Route::get('login', function () {
     return view('auth.login');
-});
-Route::get('/', function () {
-    return view('welcome');
 });
 
 Route::middleware(['web'])->group(function () {
@@ -19,11 +16,6 @@ Route::middleware(['web'])->group(function () {
         return view('auth.register');
     });
 });
-
-Route::get('logout', function () {
-    return 'Logout';
-});
-
 
 Route::get('category', [CategoryController::class, 'getIndex']);
 

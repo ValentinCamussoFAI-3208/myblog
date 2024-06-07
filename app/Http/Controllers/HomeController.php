@@ -8,6 +8,6 @@ class HomeController extends Controller
 {
     // Muestra la pantalla principal del blog
     public function getHome() {
-        return view('home');
+        return view('welcome');
     }
 }
