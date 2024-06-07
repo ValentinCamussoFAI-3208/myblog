@@ -17,7 +17,11 @@ Route::middleware(['web'])->group(function () {
     });
 });
 
-Route::get('category', [CategoryController::class, 'getIndex']);
+Route::get('category', [CategoryController::class, 'getCategories']);
+
+Route::get('category/{id}', [CategoryController::class, 'getIndex']);
+
+Route::get('category/{categoryID}/show/{postId}', [CategoryController::class, 'getShow']);
 
 Route::get('category/show/{id}', [CategoryController::class, 'getShow']);
 
