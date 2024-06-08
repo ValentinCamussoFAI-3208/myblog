@@ -10,24 +10,32 @@ Route::get('/', [HomeController::class, 'getHome'])->name('welcome');
 Route::get('login', function () {
     return view('auth.login');
 });
-
+Route::get('/navigation', [CategoryController::class, 'index']);
 Route::middleware(['web'])->group(function () {
     Route::get('/register', function () {   
         return view('auth.register');
     });
 });
 
+// ruotes de categoria
+Route::get('/navigation', [CategoryController::class, 'index']);
+
 Route::get('category', [CategoryController::class, 'getCategories']);
 
-Route::get('category/{id}', [CategoryController::class, 'getIndex']);
+Route::get('category/{id}', [CategoryController::class, 'getIndex'])->name('category.show');
 
 Route::get('category/{categoryID}/show/{postId}', [CategoryController::class, 'getShow']);
 
 Route::get('category/show/{id}', [CategoryController::class, 'getShow']);
 
+
 Route::get('category/create', [CategoryController::class, 'getCreate']);
 
 Route::get('category/edit/{id}', [CategoryController::class, 'getEdit']);
+
+//
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
