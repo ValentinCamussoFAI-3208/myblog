@@ -33,9 +33,7 @@ Route::get('category/create', [CategoryController::class, 'getCreate']);
 
 Route::get('category/edit/{id}', [CategoryController::class, 'getEdit']);
 
-//
-
-
+Route::post('category/{id}/post', [CategoryController::class, 'storePost'])->name('category.storePost');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
