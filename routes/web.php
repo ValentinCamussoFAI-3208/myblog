@@ -19,7 +19,7 @@ Route::middleware(['web'])->group(function () {
 
 Route::get('category', [CategoryController::class, 'getCategories']);
 
-Route::get('category/{id}', [CategoryController::class, 'getIndex']);
+Route::get('category/{id}', [CategoryController::class, 'getIndex'])->name('category.show');
 
 Route::get('category/{categoryID}/show/{postId}', [CategoryController::class, 'getShow']);
 
@@ -28,6 +28,8 @@ Route::get('category/show/{id}', [CategoryController::class, 'getShow']);
 Route::get('category/create', [CategoryController::class, 'getCreate']);
 
 Route::get('category/edit/{id}', [CategoryController::class, 'getEdit']);
+
+Route::post('category/{id}/post', [CategoryController::class, 'storePost'])->name('category.storePost');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
