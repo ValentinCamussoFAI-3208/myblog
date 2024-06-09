@@ -11,6 +11,8 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -31,6 +33,11 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+    
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 
     /**
      * Get the attributes that should be cast.

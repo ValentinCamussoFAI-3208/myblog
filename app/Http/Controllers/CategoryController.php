@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 
 class CategoryController extends Controller
@@ -23,6 +23,14 @@ class CategoryController extends Controller
         // Obtener todos los posts de la categoría
         $posts = $category->posts;
         return view('category.showCategory', compact('category', 'posts'));
+    }
+
+    public function getMyPosts()
+    {
+        $user = Auth::user();
+        $posts = $user->posts()->with('category')->get();
+
+        return view('myPosts', compact('posts'));
     }
 
     public function getCategories()
@@ -49,30 +57,27 @@ class CategoryController extends Controller
 
     public function storePost(Request $request, $id)
     {
-        Log::info('Solicitud recibida:', $request->all());
         $request->validate([
             'title' => 'required|string|max:255',
-            'poster' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'poster' => 'required|image|mimes:jpeg,png,jpg|max:10000',
             'content' => 'required|string',
+        ], [
+            'title.required' => 'El campo título es obligatorio.',
+            'content.required' => 'El campo contenido es obligatorio.',
+            'poster.required' => 'Debe adjuntar una imagen.(JPEG, PNG, JPG de hasta 10MB)',
         ]);
-        Log::info('Validación pasada');
         // Crear el nuevo post
         $post = new Post();
         $post->title = $request->title;
         $post->content = $request->content;
         if ($request->hasFile('poster')) {
-            Log::info('Archivo de imagen encontrado');
             $path = $request->file('poster')->store('posters', 'public');
-            Log::info('Imagen almacenada en: ' . $path);
             $post->poster = $path;
         }
         $post->habilitated = 1;  // Asumimos que los posts se habilitan por defecto
+        $post->category_id = $id;
+        $post->user_id = Auth::id();
         $post->save();
-        Log::info('Post guardado con éxito:', $post->toArray());
-
-        // Asociar el post con la categoría
-        $category = Category::findOrFail($id);
-        $category->posts()->attach($post->id);
 
         return redirect()->route('category.show', $id)->with('success', 'Post creado exitosamente.');
     }
