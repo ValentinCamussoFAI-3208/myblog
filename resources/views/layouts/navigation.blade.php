@@ -4,7 +4,7 @@
         <div class="flex justify-between mx-auto max-w-screen-xl">
                 <div class="mb-3 md:mb-6">
                     <a href="{{ route('welcome') }}">
-                        <img src="{{ asset('svg/logo.svg') }}" class="h-20 w-20 mx-auto" alt="RTS logo" />
+                        <img src="{{ asset('svg/logo.svg') }}" class="h-10 w-10 mx-auto" alt="RTS logo" />
                     </a>
                     <span class="self-center text-1xl font-semibold whitespace-nowrap dark:text-white">RTS Games Blog</span>
                 </div>
