@@ -38,7 +38,7 @@ Route::get('myPosts', [CategoryController::class, 'getMyPosts'])->name('myPosts'
 
 Route::get('/welcome', function () {
     return view('welcome');
-})->middleware(['auth', 'verified'])->name('welcome');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
