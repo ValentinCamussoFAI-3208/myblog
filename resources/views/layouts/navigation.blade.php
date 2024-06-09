@@ -2,56 +2,53 @@
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between mx-auto max-w-screen-xl">
-                <div class="mb-3 md:mb-6">
-                    <a href="{{ route('welcome') }}">
-                        <img src="{{ asset('svg/logo.svg') }}" class="h-10 w-10 mx-auto" alt="RTS logo" />
-                    </a>
-                    <span class="self-center text-1xl font-semibold whitespace-nowrap dark:text-white">RTS Games Blog</span>
-                </div>
-                <!-- Navigation Links -->
-                <div class="hidden sm:-my-px sm: sm:flex">
-                    <x-nav-link>
-
-                        <div class="hidden sm:flex sm:items-center sm:ml-6">
-                            <x-dropdown align="right" width="60">
-                                <x-slot name="trigger">
-                                    <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
-                                        {{ __('Categories') }}
-                                        <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 111.414 1.414l-4 4a1 1 01-1.414 0l-4-4a1 1 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </button>
-                                </x-slot>
-
-                                <x-slot name="content">
-                                    @foreach($categories as $category)
-                                    <x-dropdown-link :href="route('category.show', $category)">
-                                        {{ $category->title }}
-                                    </x-dropdown-link>
-                                    @endforeach
-                                </x-slot>
-                            </x-dropdown>
-                        </div>
-                    </x-nav-link>
-                </div>
-
-            <!-- Authentication Links -->
-            @if (Route::has('login'))
-            <nav class="-mx-3 flex flex-1 justify-end">
-                @auth
-                @else
-                <a href="{{ route('login') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                    Log in
+            <div class="mb-3 md:my-3">
+                <a href="{{ route('welcome') }}">
+                    <img src="{{ asset('svg/logo.svg') }}" class="h-10 w-10 mx-auto" alt="RTS logo" />
                 </a>
+                <span class="self-center text-1xl font-semibold whitespace-nowrap dark:text-white">RTS Games Blog</span>
+            </div>
+            <!-- Navigation Links -->
+            <div class="hidden sm:-my-px sm: sm:flex">
+                <x-nav-link>
+                    <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        <x-dropdown align="right" width="60">
+                            <x-slot name="trigger">
+                                <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                                    {{ __('Categories') }}
+                                    <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 111.414 1.414l-4 4a1 1 01-1.414 0l-4-4a1 1 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </x-slot>
+                            <x-slot name="content">
+                                @foreach($categories as $category)
+                                <x-dropdown-link :href="route('category.show', $category)" class="whitespace-normal break-words">
+                                    {{ $category->title }}
+                                </x-dropdown-link>
+                                @endforeach
+                            </x-slot>
+                        </x-dropdown>
+                    </div>
+                    <div class="hidden sm:flex sm:items-center sm:ml-6">
+                    @if (Route::has('login'))
+                        @auth
+                        @else
+                        <a href="{{ route('login') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                            Log in
+                        </a>
 
-                @if (Route::has('register'))
-                <a href="{{ route('register') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                    Register
-                </a>
-                @endif
-                @endauth
-            </nav>
-            @endif
+                        @if (Route::has('register'))
+                        <a href="{{ route('register') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                            Register
+                        </a>
+                        @endif
+                        @endauth
+                    @endif
+                    </div>
+                </x-nav-link>
+            </div>
+
 
             <!-- Settings Dropdown -->
             @auth
