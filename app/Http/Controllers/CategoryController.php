@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 
@@ -23,14 +22,6 @@ class CategoryController extends Controller
         // Obtener todos los posts de la categoría
         $posts = $category->posts;
         return view('category.showCategory', compact('category', 'posts'));
-    }
-
-    public function getMyPosts()
-    {
-        $user = Auth::user();
-        $posts = $user->posts()->with('category')->get();
-
-        return view('myPosts', compact('posts'));
     }
 
     public function getCategories()

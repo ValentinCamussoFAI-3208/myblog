@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
 
 Route::get('/', [HomeController::class, 'getHome'])->name('welcome');
 
@@ -18,8 +19,6 @@ Route::middleware(['web'])->group(function () {
 });
 
 // ruotes de categoria
-Route::get('/navigation', [CategoryController::class, 'index']);
-
 Route::get('category', [CategoryController::class, 'getCategories']);
 
 Route::get('category/{id}', [CategoryController::class, 'getIndex'])->name('category.show');
@@ -34,7 +33,12 @@ Route::get('category/edit/{id}', [CategoryController::class, 'getEdit']);
 
 Route::post('category/{id}/post', [CategoryController::class, 'storePost'])->name('category.storePost');
 
-Route::get('myPosts', [CategoryController::class, 'getMyPosts'])->name('myPosts')->middleware('auth');
+// Rutas para ver, editar y eliminar publicaciones
+Route::get('myPosts', [PostController::class, 'getMyPosts'])->name('myPosts.index')->middleware('auth');
+Route::get('myPosts/{id}/edit', [PostController::class, 'edit'])->name('myPosts.edit');
+Route::put('myPosts/{id}', [PostController::class, 'update'])->name('myPosts.update');
+Route::delete('myPosts/{id}', [PostController::class, 'destroy'])->name('myPosts.destroy');
+
 
 Route::get('/welcome', function () {
     return view('welcome');
