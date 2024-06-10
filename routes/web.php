@@ -15,13 +15,13 @@ Route::get('category/{id}', [CategoryController::class, 'getIndex'])->name('cate
 
 Route::get('category/{categoryID}/show/{postId}', [CategoryController::class, 'getShow']);
 
-Route::get('category/{id}/create', [CategoryController::class, 'getCreate']);
+Route::get('category/{id}/create', [CategoryController::class, 'getCreate'])->middleware('auth');
 
 Route::post('category/{id}/post', [CategoryController::class, 'storePost'])->name('category.storePost');
 
 // Rutas para ver, editar y eliminar publicaciones
 Route::get('myPosts', [PostController::class, 'getMyPosts'])->name('myPosts.index')->middleware('auth');
-Route::get('myPosts/{id}/edit', [PostController::class, 'edit'])->name('myPosts.edit');
+Route::get('myPosts/{id}/edit', [PostController::class, 'edit'])->name('myPosts.edit')->middleware('auth');
 Route::put('myPosts/{id}', [PostController::class, 'update'])->name('myPosts.update');
 Route::delete('myPosts/{id}', [PostController::class, 'destroy'])->name('myPosts.destroy');
 

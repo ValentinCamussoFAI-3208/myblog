@@ -7,10 +7,9 @@
     </x-slot>
     <div class="bg-gray-600 flex items-center justify-center flex-col text-gray-800 dark:text-gray-200">
         <div class="flex flex-col items-center px-4 w-2/5">
-            <div class="bg-slate-800">
                 <div class="rounded mx-auto">
                     @if ($posts->isEmpty())
-                    <p class="my-6">No has creado ningun posteo.</p>
+                    <p class="my-64 mx-12">No has creado ningun posteo.</p>
                     @else
                     @foreach ($posts as $post)
                     <div class="mx-16 my-10 p-5 bg-slate-700 rounded">
@@ -30,7 +29,6 @@
                     </div>
                     @endforeach
                     @endif
-                </div>
             </div>
 
         </div>

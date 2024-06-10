@@ -5,8 +5,8 @@
             Crear post en {{$category->title}}
         </h2>
     </x-slot>
-    <div class="bg-gray-600 flex items-center justify-center h-screen">
-        <div class="bg-slate-800 p-6 rounded-lg shadow-lg mx-auto min-h-1/2 w-1/2 flex justify-center items-center">
+    <div class="bg-gray-600 flex items-center justify-center">
+        <div class="bg-slate-800 p-6 rounded-lg shadow-lg mx-auto min-h-1/2 w-1/2 flex justify-center items-center my-12">
             <div class="text-white w-1/2 p-5 rounded shadow-md">
                 <form action="{{ route('category.storePost', $category->id) }}" method="POST" enctype="multipart/form-data" novalidate>
                     @csrf
