@@ -13,15 +13,17 @@
         <x-nav-link>
           <div class="flex w-full justify-between items-center">
             <div class="flex sm:items-center">
+              <!-- En efecto este es el mismo que abajo, pero sino esta por alguna razon rompe el estilo del dropdown. Si saben la solucion comentenlo D:  -->
               <x-dropdown>
                 <x-slot name="trigger">
-                  <button class="inline-flex items-center py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
-                    {{ __('Categories') }}
+                  <button class="hidden items-center py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300  transition ease-in-out duration-150">
+                    {{ __('Categorias') }}
                     <svg class="ml-2 h-2 w-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                       <path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
                     </svg>
                   </button>
                 </x-slot>
+
                 <x-slot name="content">
                   @foreach($categories as $category)
                   <x-dropdown-link :href="route('category.show', $category)" class="whitespace-normal break-words">
@@ -29,10 +31,36 @@
                   </x-dropdown-link>
                   @endforeach
                 </x-slot>
+
               </x-dropdown>
-              <a href="{{ route('myPosts.index') }}" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150 ml-6">Mis posts</a>
+
+              <x-dropdown align="right" width="48">
+
+                <x-slot name="trigger">
+                  <button class="inline-flex items-center py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300  transition ease-in-out duration-150">
+                    {{ __('Categorias') }}
+                    <svg class="ml-2 h-2 w-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                      <path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
+                    </svg>
+                  </button>
+                </x-slot>
+
+                <x-slot name="content">
+                  @foreach($categories as $category)
+                  <x-dropdown-link :href="route('category.show', $category)" class="whitespace-normal break-words">
+                    {{ $category->title }}
+                  </x-dropdown-link>
+                  @endforeach
+                </x-slot>
+
+              </x-dropdown>
+
+              <button class="inline-flex items-center py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300  transition ease-in-out duration-150">
+                <a href="{{ route('myPosts.index') }}" class="py-2 ml-6">Mis posts</a>
+              </button>
             </div>
           </div>
+
         </x-nav-link>
       </div>
 
@@ -41,11 +69,11 @@
       @else
       <div class="flex sm:items-center">
         <a href="{{ route('login') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-          Log in
+          Ingresá
         </a>
         @if (Route::has('register'))
         <a href="{{ route('register') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white ml-4">
-          Register
+          Registrate
         </a>
       </div>
       @endif
@@ -70,7 +98,7 @@
 
           <x-slot name="content">
             <x-dropdown-link :href="route('profile.edit')">
-              {{ __('Profile') }}
+              {{ __('Perfil') }}
             </x-dropdown-link>
 
             <!-- Authentication -->
@@ -79,7 +107,7 @@
 
               <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
                                                     this.closest('form').submit();">
-                {{ __('Log Out') }}
+                {{ __('Cerrar Sesión') }}
               </x-dropdown-link>
             </form>
           </x-slot>
