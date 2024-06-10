@@ -15,7 +15,7 @@
             </a>
 
             @else
-            <div class="bg-slate-800 flex flex-col-reverse">
+            <div class="flex flex-col-reverse">
 
                 @foreach ($posts as $post)
                 <a href="/category/{{ $category->id }}/show/{{ $post->id }}" class="my-3 mx-auto px-40 py-2">

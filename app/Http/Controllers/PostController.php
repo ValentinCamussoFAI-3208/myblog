@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
-
+    // Buscar posts del usuario logueado
     public function getMyPosts()
     {
         $user = Auth::user();
