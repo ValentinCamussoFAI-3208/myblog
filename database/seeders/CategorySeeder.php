@@ -16,8 +16,10 @@ class CategorySeeder extends Seeder
     {
         // Crear categorías si no existen
         $categories = [
-            ['title' => 'Age of Empires 2'],
-            ['title' => 'Age of Empires 3'],
+            ['title' => 'Age of Empires II'],
+            ['title' => 'Starcraft II'],
+            ['title' => 'Warcraft III: The Frozen Throne'],
+            ['title' => 'Offtopic'],
         ];
 
         foreach ($categories as $category) {
