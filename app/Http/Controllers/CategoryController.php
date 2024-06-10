@@ -79,4 +79,9 @@ class CategoryController extends Controller
         $data['post'] = Post::findOrFail($id);
         return view('category.edit', $data);
     }
+
+    public function getCreate($id){
+        $category = Category::findOrFail($id);
+        return view('category.create', compact('category'));
+    }
 }

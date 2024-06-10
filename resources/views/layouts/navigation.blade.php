@@ -5,8 +5,8 @@
       <div class="mb-3 md:my-3">
         <a href="{{ route('welcome') }}">
           <img src="{{ asset('svg/logo.svg') }}" class="h-10 w-10 mx-auto" alt="RTS logo" />
+          <span class="self-center text-1xl font-semibold whitespace-nowrap dark:text-white">RTS Games Blog</span>
         </a>
-        <span class="self-center text-1xl font-semibold whitespace-nowrap dark:text-white">RTS Games Blog</span>
       </div>
       <!-- Navigation Links -->
       <div class="sm:-my-px flex">

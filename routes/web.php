@@ -8,16 +8,6 @@ use App\Http\Controllers\PostController;
 
 Route::get('/', [HomeController::class, 'getHome'])->name('welcome');
 
-Route::get('login', function () {
-    return view('auth.login');
-});
-Route::get('/navigation', [CategoryController::class, 'index']);
-Route::middleware(['web'])->group(function () {
-    Route::get('/register', function () {   
-        return view('auth.register');
-    });
-});
-
 // ruotes de categoria
 Route::get('category', [CategoryController::class, 'getCategories']);
 
@@ -25,11 +15,7 @@ Route::get('category/{id}', [CategoryController::class, 'getIndex'])->name('cate
 
 Route::get('category/{categoryID}/show/{postId}', [CategoryController::class, 'getShow']);
 
-Route::get('category/show/{id}', [CategoryController::class, 'getShow']);
-
-Route::get('category/create', [CategoryController::class, 'getCreate']);
-
-Route::get('category/edit/{id}', [CategoryController::class, 'getEdit']);
+Route::get('category/{id}/create', [CategoryController::class, 'getCreate']);
 
 Route::post('category/{id}/post', [CategoryController::class, 'storePost'])->name('category.storePost');
 
@@ -38,11 +24,6 @@ Route::get('myPosts', [PostController::class, 'getMyPosts'])->name('myPosts.inde
 Route::get('myPosts/{id}/edit', [PostController::class, 'edit'])->name('myPosts.edit');
 Route::put('myPosts/{id}', [PostController::class, 'update'])->name('myPosts.update');
 Route::delete('myPosts/{id}', [PostController::class, 'destroy'])->name('myPosts.destroy');
-
-
-Route::get('/welcome', function () {
-    return view('welcome');
-});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

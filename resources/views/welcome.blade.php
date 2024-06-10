@@ -22,8 +22,14 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <h1>¿Eres nuevo en Age?</h1>
-                    <p class="mb-3 text-gray-500 dark:text-gray-400">Aun no es muy tarde! Puedes conseguir a un modico precio toda la saga de Age Of Empires, tan solo debes tener una cuenta en microsoft y conseguir el juego aqui</p>
-                    <a href="https://www.xbox.com/es-AR/games/store/coleccion-del-25to-aniversario-de-age-of-empires/9NBH81H3VB7P/0010" target="_blank"><button type="button" class="focus:outline-none text-red-600 bg-yellow-300 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Comprar ahora</button></a>
+                    <p class="mb-3 text-gray-500 dark:text-gray-400">Aun no es muy tarde! Puedes conseguir a un modico precio toda la saga de Age Of Empires, tan solo debes tener una cuenta en microsoft y conseguir el juego aqui</p>                        
+                    <a 
+                        href="https://www.xbox.com/es-AR/games/store/coleccion-del-25to-aniversario-de-age-of-empires/9NBH81H3VB7P/0010"
+                        target="_blank" 
+                        class="mt-12 mb-32 bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    >
+                        Comprar ahora
+                    </a>
         </div>
     </div>
 </x-app-layout>
